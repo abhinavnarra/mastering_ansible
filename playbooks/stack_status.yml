@@ -1,0 +1,29 @@
+---
+  - hosts: loadbalancer
+    become: true
+    tasks:
+      - name: verify nginx service
+        command: service nginx status
+
+      - name: verify nginx listening on portg 80
+        waitfor: port=80 timeout=1
+
+  - hosts: webserver
+    become: true
+    tasks:
+      - name: verify apache2 service
+        command: service apache2 status
+
+      - name: verify nginx listening on portg 80
+        waitfor: port=80 timeout=1
+
+  - hosts: database
+    become: true
+    tasks:
+      - name: verify mysql service
+        command: service musql status
+
+      - name: verify nginx listening on portg 3306
+        waitfor: port=3306 timeout=1
+
+  

@@ -1,0 +1,9 @@
+
+[dev]
+dev 
+
+[control]
+control ansible_connection=local
+
+[qa]
+qa 
